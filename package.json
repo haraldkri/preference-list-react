@@ -2,6 +2,11 @@
   "name": "share-preferences-react",
   "version": "0.1.3",
   "private": true,
+  "author": {
+    "name": "Harald Kriebisch",
+    "email": "kriebisch.harald+contact@gmail.com",
+    "url": "https://harald-kriebisch-personal.web.app/"
+  },
   "dependencies": {
     "antd": "^5.8.6",
     "react": "^18.2.0",
