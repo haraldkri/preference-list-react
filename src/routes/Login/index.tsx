@@ -1,31 +1,13 @@
-import React, {FC, useState} from 'react';
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import {useNavigate} from "react-router-dom";
-import {Button, message} from "antd";
+import React, {FC, useContext} from 'react';
+import {Button} from "antd";
+import {UserContext} from "../../context/UserContext";
 
 const LoginRoute: FC = () => {
-    const auth = getAuth();
-    const navigate = useNavigate();
-    const [authorizing, setAuthorizing] = useState(false);
-
-    const signInWithGoogle = async () => {
-        setAuthorizing(true);
-
-        signInWithPopup(auth, new GoogleAuthProvider())
-            .then(response => {
-                console.log(response.user.uid);
-                navigate('/', {replace: true})
-            })
-            .catch(error => {
-                message.error("Login failed")
-                console.log(error)
-            })
-            .finally(() => setAuthorizing(false))
-    }
+    const {login, loading} = useContext(UserContext);
 
     return <div>
         <p>Login Route</p>
-        <Button type={"primary"} onClick={signInWithGoogle} disabled={authorizing}>Sign in with Google</Button>
+        <Button type={"primary"} onClick={login} disabled={loading}>Sign in with Google</Button>
     </div>
 }
 

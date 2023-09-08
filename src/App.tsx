@@ -6,21 +6,23 @@ import {initializeApp} from "firebase/app";
 import {config} from "./config";
 import AuthRoute from "./routes/Auth";
 import LoginRoute from "./routes/Login";
+import UserProvider from "./provider/UserProvider";
 
 // initialize firebase app
 initializeApp(config.firebaseConfig)
 
 const App: FC = () => {
     const router = createBrowserRouter([
-        {
-            path: "login",
-            element: <LoginRoute/>
-        },
+
         {
             path: "",
-            element: <AuthRoute/>,
+            element: <UserProvider><AuthRoute/></UserProvider>,
             loader: () => <LoadingSpinner/>,
             children: [
+                {
+                    path: "login",
+                    element: <LoginRoute/>
+                },
                 {
                     path: "",
                     element: <HomeRoute/>

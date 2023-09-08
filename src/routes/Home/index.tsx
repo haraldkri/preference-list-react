@@ -1,10 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import logo from "../../logo.svg";
 import styled from "styled-components";
 import Center from "../../components/Center";
 import {Button} from "antd";
-import {getAuth, signOut} from "firebase/auth";
-import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../context/UserContext";
 
 const Logo = styled.img`
   height: 40vmin;
@@ -25,19 +24,13 @@ const Logo = styled.img`
 `;
 
 const HomeRoute: FC = () => {
-    const auth = getAuth();
-    const navigate = useNavigate();
-
-    const handleSignout = () =>{
-        signOut(auth);
-        navigate("/", {replace: true})
-    }
+    const {logout, user} = useContext(UserContext);
 
     return <div>
         <Logo src={logo} alt="logo"/>
         <Center>
-            <span>Welcome!</span>
-            <Button type="primary" onClick={handleSignout}>Sign out</Button>
+            <span>Welcome {user?.displayName}!</span>
+            <Button type="primary" onClick={logout}>Sign out</Button>
         </Center>
     </div>
 
