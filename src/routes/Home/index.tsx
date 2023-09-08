@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import logo from "../../logo.svg";
 import styled from "styled-components";
-
-const Wrapper = styled.div`
-  text-align: center;
-`;
+import Center from "../../components/Center";
+import {Button} from "antd";
+import {getAuth, signOut} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
 
 const Logo = styled.img`
   height: 40vmin;
@@ -24,37 +24,23 @@ const Logo = styled.img`
   }
 `;
 
-const Header = styled.div`
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-`;
+const HomeRoute: FC = () => {
+    const auth = getAuth();
+    const navigate = useNavigate();
 
-const Link = styled.a`
-  color: #61dafb;
-`;
+    const handleSignout = () =>{
+        signOut(auth);
+        navigate("/", {replace: true})
+    }
 
-const HomeRoute = () => {
-    return <Wrapper>
-        <Header>
-            <Logo src={logo} alt="logo"/>
-            <p>
-                Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <Link
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn React
-            </Link>
-        </Header>
-    </Wrapper>
+    return <div>
+        <Logo src={logo} alt="logo"/>
+        <Center>
+            <span>Welcome!</span>
+            <Button type="primary" onClick={handleSignout}>Sign out</Button>
+        </Center>
+    </div>
+
 }
 
 export default HomeRoute

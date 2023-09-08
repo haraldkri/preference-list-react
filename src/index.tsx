@@ -2,38 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import HomeRoute from "./routes/Home";
-import LoadingSpinner from "./components/LoadingSpinner";
-import SignupRoute from "./routes/Auth/Signup";
-import LoginRoute from "./routes/Auth/Login";
+import RootLayout from './components/Layouts/RootLayout';
+import App from "./App";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <HomeRoute/>,
-        loader: () => <LoadingSpinner/>,
-        children: [
-            {
-                path: "signup",
-                element: <SignupRoute/>,
-            },
-            {
-                path: "login",
-                element: <LoginRoute/>,
-            }
-
-        ],
-    },
-]);
-
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+            <RootLayout>
+                <App/>
+            </RootLayout>
     </React.StrictMode>
 );
 
