@@ -6,3 +6,9 @@
 - React (+ Typescript)
 - Firebase
 - Git (+ Github)
+
+
+
+## TODO
+- i18n
+- 

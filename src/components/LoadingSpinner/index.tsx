@@ -2,7 +2,7 @@ import {Spin} from "antd";
 import Center from "../Center";
 import React from "react";
 
-const LoadingSpinner = () =>{
+const LoadingSpinner = () => {
     return <Center><Spin/></Center>
 };
 

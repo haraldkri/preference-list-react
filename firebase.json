@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "preference-list-react",
     "public": "build",
     "ignore": [
       "firebase.json",
