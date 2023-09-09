@@ -1,8 +1,9 @@
+import React, {FC} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {initializeApp} from "firebase/app";
+import {ConfigProvider, theme} from "antd";
 import LoadingSpinner from "./components/LoadingSpinner";
 import HomeRoute from "./routes/Home";
-import React, {FC} from "react";
-import {initializeApp} from "firebase/app";
 import {config} from "./config";
 import AuthRoute from "./routes/Auth";
 import LoginRoute from "./routes/Login";
@@ -31,7 +32,17 @@ const App: FC = () => {
         },
     ]);
 
-    return <RouterProvider router={router}/>
+    return <ConfigProvider
+        theme={{
+            // 1. Use dark algorithm
+            algorithm: theme.darkAlgorithm,
+
+            // 2. Combine dark algorithm and compact algorithm
+            // algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
+        }}
+    >
+        <RouterProvider router={router}/>
+    </ConfigProvider>
 }
 
 export default App
