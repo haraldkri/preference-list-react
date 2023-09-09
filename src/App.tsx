@@ -8,6 +8,7 @@ import {config} from "./config";
 import AuthRoute from "./routes/Auth";
 import LoginRoute from "./routes/Login";
 import UserProvider from "./provider/UserProvider";
+import ThemeProvider from "./provider/ThemeProvider";
 
 // initialize firebase app
 initializeApp(config.firebaseConfig)
@@ -41,7 +42,10 @@ const App: FC = () => {
             // algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
         }}
     >
-        <RouterProvider router={router}/>
+        <ThemeProvider>
+            <RouterProvider router={router}/>
+        </ThemeProvider>
+
     </ConfigProvider>
 }
 

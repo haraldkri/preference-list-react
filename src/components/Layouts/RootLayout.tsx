@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 const RootLayout = styled.div`
-  min-height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: #f4f4f4;

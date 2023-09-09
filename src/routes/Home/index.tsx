@@ -4,7 +4,6 @@ import styled from "styled-components";
 import {Divider, Layout} from "antd";
 import {Content, Footer, Header} from "antd/es/layout/layout";
 import UserAvatar from "../../components/UserAvatar";
-import {useTheme} from "../../hooks/useTheme";
 import FlexGrow from '../../components/FlexGrow';
 
 const Logo = styled.img`
@@ -42,8 +41,8 @@ const CustomContent = styled(Content)`
   margin: 24px 0 0;
 `;
 
-const Main = styled(FlexGrow)<{ $background: string }>`
-  background: ${({$background}) => $background};
+const Main = styled(FlexGrow)`
+  background: ${({theme}) => theme.antd.colorBgContainer};
   display: grid;
   grid-template-columns: 1fr auto 1fr;
 `;
@@ -62,15 +61,13 @@ const CustomDivider = styled(Divider)`
 `;
 
 const HomeRoute: FC = () => {
-    const {colorBgContainer,} = useTheme();
-
     return <CustomLayout>
         <CustomHeader>
             <Logo src={logo} alt="logo"/>
             <UserAvatar/>
         </CustomHeader>
         <CustomContent>
-            <Main $background={colorBgContainer}>
+            <Main>
                 <Column>1</Column>
                 <CustomDivider type="vertical"/>
                 <Column>2</Column>
