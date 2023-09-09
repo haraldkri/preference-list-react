@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-            <RootLayout>
-                <App/>
-            </RootLayout>
+        <RootLayout>
+            <App/>
+        </RootLayout>
     </React.StrictMode>
 );
 

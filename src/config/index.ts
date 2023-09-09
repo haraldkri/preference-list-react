@@ -1,5 +1,5 @@
 export const config = {
-    firebaseConfig:{
+    firebaseConfig: {
         apiKey: "AIzaSyD4I8v2607h3BgZ702Itqt-7okD7f7WW70",
         authDomain: "preference-list-react.firebaseapp.com",
         projectId: "preference-list-react",
