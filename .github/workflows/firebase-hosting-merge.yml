@@ -17,8 +17,9 @@ jobs:
       # Build the project
       - run: npm run build
 
-      # Run tests
-      - run: npm run test:ci
+      # Run jest and cypress tests
+      - run: npm run test
+      - run: npm run cypress:run
 
       # Create a new version
       - run: npm run version
