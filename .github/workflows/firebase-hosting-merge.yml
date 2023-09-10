@@ -9,30 +9,33 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # Install project dependencies
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      # Build the project
-      - run: npm run build
+      - name: Build application
+        run: npm run build
 
-      # Run jest tests
-      - run: npm run test
+      - name: Run Jest tests
+        run: npm run test
 
-      # Run Cypress tests with environment variables
-      - name: Run Cypress tests
+      - name: Run Cypress E2E tests
         run: npm run cypress:run
         env:
           CYPRESS_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           CYPRESS_FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           CYPRESS_FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+        with:
+          start: npm start
+          browser: chrome
 
-      # Create a new version
-      - run: npm run version
+      - name: Create new version
+        run: npm run version
 
-      # Deploy to Firebase Hosting
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PREFERENCE_LIST_REACT }}'
