@@ -31,14 +31,3 @@ jobs:
         with:
           start: npm start # Start your app
           wait-on: 'http://localhost:3000' # Wait for your app to start
-
-      - name: Create new version
-        run: npm run version
-
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PREFERENCE_LIST_REACT }}'
-          channelId: live
-          projectId: preference-list-react
