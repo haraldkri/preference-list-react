@@ -40,11 +40,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && firebase deploy --only hosting:preference-list-react",
-    "publish": "npm run deploy && git add . && git commit -m \"new version published\" && npm version patch -m \"v%s\" && git push && git push --tags",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "test:ci": "react-scripts test && npm run cypress:run",
+    "version": "git add . && git commit -m \"new version published\" && npm version patch -m \"v%s\" && git push && git push --tags",
+    "publish": "firebase deploy --only hosting:preference-list-react",
+    "deploy": "npm run build && npm run test:ci && npm run version && npm run publish"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
