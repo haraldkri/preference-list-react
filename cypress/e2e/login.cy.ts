@@ -17,6 +17,6 @@ describe('Login Redirect', () => {
     it('should automatically log in user', () => {
         cy.login();
         cy.visit('/')
-        cy.contains('Welcome').should('be.visible');
+        cy.contains('Created by').should('be.visible');
     })
 });
