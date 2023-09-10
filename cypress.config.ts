@@ -1,19 +1,22 @@
 import * as admin from 'firebase-admin';
 import {defineConfig} from 'cypress';
 import {plugin as cypressFirebasePlugin} from 'cypress-firebase';
-import {serviceAccount} from "./src/config/serviceAccount";
 
 export default defineConfig({
     e2e: {
         baseUrl: 'http://localhost:3000',
         // NOTE: Add "supportFile" setting if separate location is used
         setupNodeEvents(on, config) {
-            // e2e testing node events setup code
+            // Access the service account details from environment variables
+            const projectId = process.env.FIREBASE_PROJECT_ID;
+            const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');  // Ensure newline characters are handled correctly
+            const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+
             return cypressFirebasePlugin(on, config, admin, {
                 credential: admin.credential.cert({
-                    projectId: serviceAccount.project_id,
-                    privateKey: serviceAccount.private_key,
-                    clientEmail: serviceAccount.client_email
+                    projectId,
+                    privateKey,
+                    clientEmail
                 })
                 // Here is where you can pass special options.
                 // If you have not set the GCLOUD_PROJECT environment variable, give the projectId here, like so:
