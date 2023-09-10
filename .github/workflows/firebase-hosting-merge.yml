@@ -22,11 +22,11 @@ jobs:
 
       # Run Cypress tests with environment variables
       - name: Run Cypress tests
-        run: npm run cypress:run -- --env FIREBASE_PROJECT_ID=${{ env.FIREBASE_PROJECT_ID }},FIREBASE_PRIVATE_KEY=${{ env.FIREBASE_PRIVATE_KEY }},FIREBASE_CLIENT_EMAIL=${{ env.FIREBASE_CLIENT_EMAIL }}
+        run: npm run cypress:run
         env:
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          CYPRESS_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          CYPRESS_FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+          CYPRESS_FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
 
       # Create a new version
       - run: npm run version
