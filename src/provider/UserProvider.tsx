@@ -31,7 +31,7 @@ const UserProvider = ({children}: Props) => {
         });
 
         return () => AuthCheck();
-    }, [auth]);
+    }, [auth, navigate]);
 
     const handleLogin = (loginType?: SupportedLoginTypes) => {
         let provider = new GoogleAuthProvider();

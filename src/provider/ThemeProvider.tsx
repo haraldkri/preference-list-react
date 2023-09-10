@@ -8,7 +8,7 @@ import {ThemeProvider} from "styled-components";
 //     }
 // }
 
-export default ({children}: React.PropsWithChildren) => {
+const CustomThemeProvider = ({children}: React.PropsWithChildren) => {
     const {token} = theme.useToken();
     return (
         <ThemeProvider theme={{antd: token}}>
@@ -16,3 +16,5 @@ export default ({children}: React.PropsWithChildren) => {
         </ThemeProvider>
     );
 };
+
+export default CustomThemeProvider
