@@ -27,7 +27,7 @@ jobs:
           CYPRESS_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           CYPRESS_FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           CYPRESS_FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          CYPRESS_TEST_UID: ${{ secrets.FIREBASE_TEST_UID }}
+          TEST_UID: ${{ secrets.FIREBASE_TEST_UID }}
         with:
           start: npm start # Start your app
           wait-on: 'http://localhost:3000' # Wait for your app to start
