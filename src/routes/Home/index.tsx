@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 import logo from "../../logo.svg";
 import styled from "styled-components";
 import {Divider, Layout} from "antd";
-import {Content, Footer, Header} from "antd/es/layout/layout";
 import UserAvatar from "../../components/UserAvatar";
 import FlexGrow from '../../components/FlexGrow';
+const { Content, Footer, Header } = Layout;
 
 const Logo = styled.img`
   height: 100%;
@@ -42,7 +42,7 @@ const CustomContent = styled(Content)`
 `;
 
 const Main = styled(FlexGrow)`
-  background: ${({theme}) => theme.antd.colorBgContainer};
+  background: ${({theme}) => theme.antd?.colorBgContainer};
   display: grid;
   grid-template-columns: 1fr auto 1fr;
 `;

@@ -4,6 +4,6 @@ import HomeRoute from './';
 
 test('renders learn react link', () => {
     render(<HomeRoute/>);
-    const linkElement = screen.getByText(/learn react/i);
+    const linkElement = screen.getByText(/Created by/i);
     expect(linkElement).toBeInTheDocument();
 });
