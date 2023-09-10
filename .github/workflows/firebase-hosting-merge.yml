@@ -9,17 +9,20 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install bun
+        uses: oven-sh/setup-bun@v1
+
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Build application
-        run: npm run build
+        run: bun run build
 
       - name: Run Jest tests
-        run: npm run test
+        run: bun run test
 
       - name: Run Cypress E2E tests
         uses: cypress-io/github-action@v3
@@ -29,5 +32,5 @@ jobs:
           CYPRESS_FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           CYPRESS_TEST_UID: ${{ secrets.TEST_UID }}
         with:
-          start: npm start # Start your app
+          start: bun start # Start your app
           wait-on: 'http://localhost:3000' # Wait for your app to start
