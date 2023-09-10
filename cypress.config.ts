@@ -7,10 +7,10 @@ export default defineConfig({
         baseUrl: 'http://localhost:3000',
         // NOTE: Add "supportFile" setting if separate location is used
         setupNodeEvents(on, config) {
-            // Access the service account details from environment variables
-            const projectId = process.env.FIREBASE_PROJECT_ID;
-            const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');  // Ensure newline characters are handled correctly
-            const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+            // Access the service account details from cypress environment variables
+            const projectId = config.env.FIREBASE_PROJECT_ID;
+            const privateKey = config.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');  // Ensure newline characters are handled correctly
+            const clientEmail = config.env.FIREBASE_CLIENT_EMAIL;
 
             return cypressFirebasePlugin(on, config, admin, {
                 credential: admin.credential.cert({
